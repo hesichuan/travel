@@ -7,5 +7,8 @@ module.exports = {
         'styles': path.resolve(__dirname, 'src/assets/styles')
       }
     }
-  }
+  },
+  baseUrl: process.env.NODE_ENV === 'production'
+    ? '/'
+    : './'
 }
