@@ -10,9 +10,11 @@
 </template>
 
 <script lang="ts">
-import { Provide, Vue } from 'vue-property-decorator'
-export default class Swiper extends Vue {
-  @Provide() swiperImgs: Array<Object> = [
+import { Component, Provide, Vue } from 'vue-property-decorator'
+
+@Component
+export default class SwiperPic extends Vue {
+  @Provide() swiperImgs: Array<object> = [
     {
       id: '0001',
       filename: 'one.jpg',
@@ -29,11 +31,14 @@ export default class Swiper extends Vue {
       alt: '激情滑雪，乐趣崇礼'
     }
   ]
-  @Provide() swiperOption: Object = {
+  @Provide() swiperOption: object = {
     pagination: {
       el: '.swiper-pagination'
     },
     loop: true
+  }
+  public a () {
+    console.log(this.swiperImgs, this.swiperOption)
   }
 }
 </script>
