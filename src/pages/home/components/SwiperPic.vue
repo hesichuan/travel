@@ -12,9 +12,21 @@
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
 
+interface SwiperImgs {
+  id: number | string
+  filename: string
+  alt?: string
+}
+interface Pagination {
+  el: string
+}
+interface SwiperOption {
+  pagination: Pagination
+  loop?: boolean
+}
 @Component
 export default class SwiperPic extends Vue {
-  @Provide() swiperImgs: Array<object> = [
+  private swiperImgs: SwiperImgs[] = [
     {
       id: '0001',
       filename: 'one.jpg',
@@ -31,14 +43,11 @@ export default class SwiperPic extends Vue {
       alt: '激情滑雪，乐趣崇礼'
     }
   ]
-  @Provide() swiperOption: object = {
+  private swiperOption: SwiperOption = {
     pagination: {
       el: '.swiper-pagination'
     },
     loop: true
-  }
-  public a () {
-    console.log(this.swiperImgs, this.swiperOption)
   }
 }
 </script>
