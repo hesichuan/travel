@@ -91,11 +91,11 @@ export default class Icons extends Vue {
       el: '.swiper-pagination'
     }
   }
-  get pages(): SwiperIcons[][] {
+  get pages (): SwiperIcons[][] {
     const pages: SwiperIcons[][] = []
     this.iconList.forEach((item, index) => {
       const page: number = Math.floor(index / 8)
-      if(!pages[page]) {
+      if (!pages[page]) {
         pages[page] = []
       }
       pages[page].push(item)
