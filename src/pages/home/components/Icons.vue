@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts">
-import filter from 'vue'
 import { Component, Provide, Vue } from 'vue-property-decorator'
 
 interface SwiperIcons {
@@ -33,8 +32,8 @@ interface SwiperOption {
 }
 @Component
 export default class Icons extends Vue {
-  private PAGES_ICON_NUM = 8
-  private iconList: SwiperIcons[] = [
+  @Provide() PAGES_ICON_NUM = 8
+  @Provide() iconList: SwiperIcons[] = [
     {
       id: '0001',
       filename: 'jdmp.png',
@@ -86,7 +85,7 @@ export default class Icons extends Vue {
       desc: '动植物园'
     }
   ]
-  private swiperOption: SwiperOption = {
+  @Provide() swiperOption: SwiperOption = {
     pagination: {
       el: '.swiper-pagination'
     }

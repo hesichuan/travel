@@ -26,7 +26,7 @@ interface SwiperOption {
 }
 @Component
 export default class SwiperPic extends Vue {
-  private swiperImgs: SwiperImgs[] = [
+  @Provide() swiperImgs: SwiperImgs[] = [
     {
       id: '0001',
       filename: 'one.jpg',
@@ -43,7 +43,7 @@ export default class SwiperPic extends Vue {
       alt: '激情滑雪，乐趣崇礼'
     }
   ]
-  private swiperOption: SwiperOption = {
+  @Provide() swiperOption: SwiperOption = {
     pagination: {
       el: '.swiper-pagination'
     },
