@@ -26,7 +26,7 @@ interface WeekendList {
 }
 @Component
 export default class Weekend extends Vue {
-   @Provide() weekendList: WeekendList[] = [
+	@Provide() weekendList: WeekendList[] = [
 		{
 			id: '0001',
 			filename: 'sh.jpg',
