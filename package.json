@@ -41,7 +41,9 @@
       "@vue/standard",
       "@vue/typescript"
     ],
-    "rules": {},
+    "rules": {
+      "indent": [2, 4]
+    },
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
     }
