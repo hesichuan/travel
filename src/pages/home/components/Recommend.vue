@@ -28,55 +28,55 @@ interface RecommendList {
 @Component
 export default class Recommend extends Vue {
   @Provide() recommendList: RecommendList[] = [
-		{
-			id: '0001',
-			filename: 'gg.jpg',
-			title: '故宫',
-			desc: '世界上现存规模最大、保存最为完整的木质结构古建筑'
-		},
-		{
-			id: '0002',
-			filename: 'cc.jpg',
-			title: '八达岭长城',
-			desc: '居庸之险不在关而在八达岭'
-		},
-		{
-			id: '0003',
-			filename: 'ymy.jpg',
-			title: '圆明园',
-			desc: '实天宝地灵之区，帝王豫游之地，无以逾此'
-		},
-		{
-			id: '0004',
-			filename: 'ssh.jpg',
-			title: '什刹海',
-			desc: '什刹海景区风光秀丽，被誉为“北方的水乡”'
-		},
-		{
-			id: '0005',
-			filename: 'sjhhdgy.jpg',
-			title: '世界花卉大观园',
-			desc: '各温室内的植物千奇百怪、花团锦簇'
-		},
-		{
-			id: '0006',
-			filename: 'yjhxc.png',
-			title: '云居滑雪场',
-			desc: '山清水秀,景色怡人。登临峰顶，从咖啡屋外城碟一般的护墙口北望，云居寺的宝塔尖顶仿佛触手可及'
-		},
-		{
-			id: '0007',
-			filename: 'yhy.jpg',
-			title: '颐和园',
-			desc: '保存最完整的一座皇家行宫御苑，被誉为“皇家园林博物馆”，也是国家重点旅游景点'
-		},
-		{
-			id: '0008',
-			filename: 'hlg.jpg',
-			title: '北京欢乐谷',
-			desc: '50余项主题景观、10余项主题表演、30多项主题游乐设施、20余项主题游戏及商业辅助设施，每天提供近80场的表演'
-		}
-	]
+    {
+      id: '0001',
+      filename: 'gg.jpg',
+      title: '故宫',
+      desc: '世界上现存规模最大、保存最为完整的木质结构古建筑'
+    },
+    {
+      id: '0002',
+      filename: 'cc.jpg',
+      title: '八达岭长城',
+      desc: '居庸之险不在关而在八达岭'
+    },
+    {
+      id: '0003',
+      filename: 'ymy.jpg',
+      title: '圆明园',
+      desc: '实天宝地灵之区，帝王豫游之地，无以逾此'
+    },
+    {
+      id: '0004',
+      filename: 'ssh.jpg',
+      title: '什刹海',
+      desc: '什刹海景区风光秀丽，被誉为“北方的水乡”'
+    },
+    {
+      id: '0005',
+      filename: 'sjhhdgy.jpg',
+      title: '世界花卉大观园',
+      desc: '各温室内的植物千奇百怪、花团锦簇'
+    },
+    {
+      id: '0006',
+      filename: 'yjhxc.png',
+      title: '云居滑雪场',
+      desc: '山清水秀,景色怡人。登临峰顶，从咖啡屋外城碟一般的护墙口北望，云居寺的宝塔尖顶仿佛触手可及'
+    },
+    {
+      id: '0007',
+      filename: 'yhy.jpg',
+      title: '颐和园',
+      desc: '保存最完整的一座皇家行宫御苑，被誉为“皇家园林博物馆”，也是国家重点旅游景点'
+    },
+    {
+      id: '0008',
+      filename: 'hlg.jpg',
+      title: '北京欢乐谷',
+      desc: '50余项主题景观、10余项主题表演、30多项主题游乐设施、20余项主题游戏及商业辅助设施，每天提供近80场的表演'
+    }
+  ]
 }
 </script>
 
