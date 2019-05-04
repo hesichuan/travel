@@ -2,8 +2,15 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
-    <city-list :cities="cities" :hotCities="hotCities"></city-list>
-    <city-alphabet :cities="cities"></city-alphabet>
+    <city-list
+      :cities="cities"
+      :hotCities="hotCities"
+      :letter="letter"
+    ></city-list>
+    <city-alphabet
+      :cities="cities"
+      @change="handleLetterClick"
+    ></city-alphabet>
   </div>
 </template>
 
@@ -38,6 +45,7 @@ interface HotCities {
 export default class City extends Vue {
   private cities: Array<Cities> = []
   private hotCities: Array<HotCities> = []
+  private letter: string = ''
 
   mounted () {
     this.getHomeInfo()
@@ -58,6 +66,9 @@ export default class City extends Vue {
     } else {
       return null
     }
+  }
+  handleLetterClick (letter: string) {
+    this.letter = letter
   }
 }
 </script>

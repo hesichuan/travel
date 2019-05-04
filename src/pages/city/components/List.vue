@@ -17,7 +17,11 @@
           </div>
         </div>
       </div>
-      <div class="area" v-for="(item, key) of cities" :key="key">
+      <div class="area"
+        v-for="(item, key) of cities"
+        :key="key"
+        :ref="key"
+      >
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
           <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
@@ -30,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import Bscroll from 'better-scroll'
 
 interface Cities {
@@ -49,7 +53,16 @@ interface HotCities {
 export default class List extends Vue {
   @Prop() cities!: Array<Cities>
   @Prop() hotCities!: Array<HotCities>
+  @Prop() letter: string = ''
   private scroll: any
+  @Watch('letter', { deep: true })
+  onChangeLetter (val: string) {
+    if (this.letter) {
+      const element = (this.$refs[this.letter] as Array<Element>)[0]
+      this.scroll.scrollToElement(element)
+    }
+  }
+
   mounted () {
     this.scroll = new Bscroll('.list')
   }
