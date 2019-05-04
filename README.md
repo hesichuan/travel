@@ -1,5 +1,5 @@
 # travel
-vue3.4开发去哪儿APP
+vue-cli 3.4.1 开发去哪儿APP
 
 ### 插件
 * reset.css 初始化浏览器默认属性
