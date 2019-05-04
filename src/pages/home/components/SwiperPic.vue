@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption">
-      <swiper-slide v-for="item in swiperImgs" :key="item.id">
+    <swiper :options="swiperOption" v-if="showSwiper">
+      <swiper-slide v-for="item in swiperList" :key="item.id">
         <img class="swiper-img" :src="require(`@/assets/image/${item.filename}`)" :alt="item.alt">
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Provide, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
-interface SwiperImgs {
+interface SwiperList {
   id: number | string
   filename: string
   alt?: string
@@ -22,32 +22,20 @@ interface Pagination {
 }
 interface SwiperOption {
   pagination: Pagination
-  loop?: boolean
+  loop: boolean
 }
 @Component
 export default class SwiperPic extends Vue {
-  @Provide() swiperImgs: SwiperImgs[] = [
-    {
-      id: '0001',
-      filename: 'one.jpg',
-      alt: '应季尖儿货一日游'
-    },
-    {
-      id: '0002',
-      filename: 'two.jpg',
-      alt: '去哪儿用户专享，寺库7日会员'
-    },
-    {
-      id: '0003',
-      filename: 'three.jpg',
-      alt: '激情滑雪，乐趣崇礼'
-    }
-  ]
-  @Provide() swiperOption: SwiperOption = {
+  @Prop() swiperList!: Array<SwiperList>
+  private swiperOption: SwiperOption = {
+    loop: true,
     pagination: {
       el: '.swiper-pagination'
-    },
-    loop: true
+    }
+  }
+  // v-if判断swiper是否已经渲染，可解决loop不生效的bug
+  get showSwiper () {
+    return this.swiperList.length
   }
 }
 </script>

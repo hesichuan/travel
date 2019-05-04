@@ -50,28 +50,33 @@ interface WeekendList {
   }
 })
 export default class Home extends Vue {
-  city: string = ''
-  swiperList: Array<SwiperList> = []
-  iconList: Array<IconList> = []
-  recommendList: Array<RecommendList> = []
-  weekendList: Array<WeekendList> = []
+  private city: string = ''
+  private swiperList: Array<SwiperList> = []
+  private iconList: Array<IconList> = []
+  private recommendList: Array<RecommendList> = []
+  private weekendList: Array<WeekendList> = []
 
   mounted () {
     this.getHomeInfo()
   }
-  getHomeInfo () {
-    axios.get('/api/index.json')
-      .then(this.getHomeInfoSucc)
-  }
-  getHomeInfoSucc (res: any) {
-    res = res.data
-    if (res.status && res.data) {
-      const data = res.data
+
+  async getHomeInfo () {
+    let data = await axios.get('/api/index.json')
+      .then(await this.getHomeInfoSucc)
+    if (data) {
       this.city = data.city
       this.swiperList = data.swiperList
       this.iconList = data.iconList
       this.recommendList = data.recommendList
       this.weekendList = data.weekendList
+    }
+  }
+  async getHomeInfoSucc (res: any) {
+    res = res.data
+    if (res && res.status && res.data) {
+      return res.data
+    } else {
+      return null
     }
   }
 }

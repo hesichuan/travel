@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Provide, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
 interface IconList {
   id: number | string
@@ -23,30 +23,23 @@ interface IconList {
   desc: string
   alt?: string
 }
-interface Pagination {
-  el: string
-}
-interface SwiperOption {
-  pagination: Pagination
-  loop?: boolean
-}
 @Component
 export default class Icons extends Vue {
+  @Prop() iconList!: Array<IconList>
   private PAGES_ICON_NUM = 8
-  @Prop({ default: [] }) iconList: Array<IconList> = []
-  private swiperOption: SwiperOption = {
+  private swiperOption = {
     pagination: {
       el: '.swiper-pagination'
     }
   }
-  get pages (): IconList[][] {
-    const pages: IconList[][] = []
+  get pages () {
+    const pages: Array<object> = []
     this.iconList.forEach((item, index) => {
       const page: number = Math.floor(index / 8)
       if (!pages[page]) {
         pages[page] = []
       }
-      pages[page].push(item)
+      (pages[page] as any).push(item)
     })
     return pages
   }
