@@ -1,16 +1,21 @@
 <template>
   <ul class="list">
-    <li class="item">A</li>
-    <li class="item">B</li>
-    <li class="item">C</li>
-    <li class="item">D</li>
+    <li class="item" v-for="(item, key) of cities" :key="key">{{key}}</li>
   </ul>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
+interface Cities {
+  [key: string]: {
+    id: number
+    spell: string
+    name: string
+  }
+}
 @Component
 export default class Alphabet extends Vue {
+  @Prop() cities!: Cities
 }
 </script>
 
