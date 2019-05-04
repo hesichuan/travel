@@ -8,6 +8,18 @@ module.exports = {
       }
     }
   },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/api': '/mock/'
+        }
+      }
+    }
+  },
   baseUrl: process.env.NODE_ENV === 'production'
     ? '/'
     : './'

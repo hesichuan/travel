@@ -8,16 +8,21 @@
       输入城市/景点/游玩主题
     </div>
     <div class="header-right">
-      城市
+      {{city}}
       <span class="iconfont">&#xe606;</span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
+interface City {
+  city: string
+}
+@Component
 export default class HomeHeader extends Vue {
+  @Prop() city!: City
 }
 </script>
 

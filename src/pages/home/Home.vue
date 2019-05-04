@@ -1,10 +1,10 @@
 <template>
   <div>
-    <home-header></home-header>
-    <home-swiper></home-swiper>
-    <home-icons></home-icons>
-    <home-recommend></home-recommend>
-    <home-weekend></home-weekend>
+    <home-header :city="city"></home-header>
+    <home-swiper :swiperList="swiperList"></home-swiper>
+    <home-icons :iconList="iconList"></home-icons>
+    <home-recommend :recommendList="recommendList"></home-recommend>
+    <home-weekend :weekendList="weekendList"></home-weekend>
   </div>
 </template>
 
@@ -15,6 +15,31 @@ import HomeSwiper from './components/SwiperPic.vue'
 import HomeIcons from './components/Icons.vue'
 import HomeRecommend from './components/Recommend.vue'
 import HomeWeekend from './components/Weekend.vue'
+import axios from 'axios'
+
+interface SwiperList {
+  id: number | string
+  filename: string
+  alt?: string
+}
+interface IconList {
+  id: number | string
+  filename: string
+  desc: string
+  alt?: string
+}
+interface RecommendList {
+	id: number | string
+	filename: string
+	title: string
+	desc: string
+}
+interface WeekendList {
+	id: number | string
+	filename: string
+	title: string
+	desc: string
+}
 @Component({
   components: {
     HomeHeader,
@@ -25,6 +50,35 @@ import HomeWeekend from './components/Weekend.vue'
   }
 })
 export default class Home extends Vue {
+  private city: string = ''
+  private swiperList: Array<SwiperList> = []
+  private iconList: Array<IconList> = []
+  private recommendList: Array<RecommendList> = []
+  private weekendList: Array<WeekendList> = []
+
+  mounted () {
+    this.getHomeInfo()
+  }
+
+  async getHomeInfo () {
+    let data = await axios.get('/api/index.json')
+      .then(await this.getHomeInfoSucc)
+    if (data) {
+      this.city = data.city
+      this.swiperList = data.swiperList
+      this.iconList = data.iconList
+      this.recommendList = data.recommendList
+      this.weekendList = data.weekendList
+    }
+  }
+  async getHomeInfoSucc (res: any) {
+    res = res.data
+    if (res && res.status && res.data) {
+      return res.data
+    } else {
+      return null
+    }
+  }
 }
 </script>
 

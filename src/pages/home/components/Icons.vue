@@ -15,89 +15,31 @@
 </template>
 
 <script lang="ts">
-import { Component, Provide, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
-interface SwiperIcons {
+interface IconList {
   id: number | string
   filename: string
   desc: string
   alt?: string
 }
-interface Pagination {
-  el: string
-}
-interface SwiperOption {
-  pagination: Pagination
-  loop?: boolean
-}
 @Component
 export default class Icons extends Vue {
-  @Provide() PAGES_ICON_NUM = 8
-  @Provide() iconList: SwiperIcons[] = [
-    {
-      id: '0001',
-      filename: 'jdmp.png',
-      desc: '景点门票'
-    },
-    {
-      id: '0002',
-      filename: 'yry.png',
-      desc: '一日游'
-    },
-    {
-      id: '0003',
-      filename: 'bjby.png',
-      desc: '北京必游'
-    },
-    {
-      id: '0004',
-      filename: 'lwr.png',
-      desc: '溜娃儿'
-    },
-    {
-      id: '0005',
-      filename: 'pcc.png',
-      desc: '爬长城'
-    },
-    {
-      id: '0006',
-      filename: 'gg.png',
-      desc: '故宫'
-    },
-    {
-      id: '0007',
-      filename: 'cgxs.png',
-      desc: '茶馆相声'
-    },
-    {
-      id: '0008',
-      filename: 'tqsh.png',
-      desc: '踏青赏花'
-    },
-    {
-      id: '0009',
-      filename: 'pwq.png',
-      desc: '泡温泉'
-    },
-    {
-      id: '0010',
-      filename: 'dzwy.png',
-      desc: '动植物园'
-    }
-  ]
-  @Provide() swiperOption: SwiperOption = {
+  @Prop() iconList!: Array<IconList>
+  private PAGES_ICON_NUM = 8
+  private swiperOption = {
     pagination: {
       el: '.swiper-pagination'
     }
   }
-  get pages (): SwiperIcons[][] {
-    const pages: SwiperIcons[][] = []
+  get pages () {
+    const pages: Array<object> = []
     this.iconList.forEach((item, index) => {
       const page: number = Math.floor(index / 8)
       if (!pages[page]) {
         pages[page] = []
       }
-      pages[page].push(item)
+      (pages[page] as any).push(item)
     })
     return pages
   }

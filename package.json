@@ -42,7 +42,8 @@
       "@vue/typescript"
     ],
     "rules": {
-      "indent": [2, 4]
+      "no-tabs": "off",
+      "indent": "off"
     },
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
