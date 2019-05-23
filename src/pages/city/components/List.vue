@@ -5,14 +5,18 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="botton-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{city}}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="botton-list">
-          <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+          <div class="button-wrapper"
+            v-for="item of hotCities"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{item.name}}</div>
           </div>
         </div>
@@ -35,6 +39,7 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
+import { State, Action } from 'vuex-class'
 import Bscroll from 'better-scroll'
 
 interface Cities {
@@ -51,6 +56,8 @@ interface HotCities {
 }
 @Component
 export default class List extends Vue {
+  @State city!: string
+  @Action changeCity!: Function
   @Prop() cities!: Array<Cities>
   @Prop() hotCities!: Array<HotCities>
   @Prop() letter: string = ''
@@ -62,7 +69,10 @@ export default class List extends Vue {
       this.scroll.scrollToElement(element)
     }
   }
-
+  handleCityClick (city: string) {
+    console.error(city)
+    this.changeCity(city)
+  }
   mounted () {
     this.scroll = new Bscroll('.list')
   }

@@ -15,6 +15,7 @@ import HomeSwiper from './components/SwiperPic.vue'
 import HomeIcons from './components/Icons.vue'
 import HomeRecommend from './components/Recommend.vue'
 import HomeWeekend from './components/Weekend.vue'
+import { State } from 'vuex-class'
 import axios from 'axios'
 
 interface SwiperList {
@@ -50,21 +51,21 @@ interface WeekendList {
   }
 })
 export default class Home extends Vue {
-  private city: string = ''
   private swiperList: Array<SwiperList> = []
   private iconList: Array<IconList> = []
   private recommendList: Array<RecommendList> = []
   private weekendList: Array<WeekendList> = []
+  @State('city') city!: string
 
   mounted () {
     this.getHomeInfo()
+    console.error(this.city)
   }
 
   async getHomeInfo () {
     let data = await axios.get('/api/index.json')
       .then(await this.getHomeInfoSucc)
     if (data) {
-      this.city = data.city
       this.swiperList = data.swiperList
       this.iconList = data.iconList
       this.recommendList = data.recommendList
