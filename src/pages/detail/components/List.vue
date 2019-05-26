@@ -2,7 +2,7 @@
   <div>
     <div
       class="item"
-      v-for="(item, index) of list"
+      v-for="(item, index) of categoryList"
       :key="index"
     >
       <div class="item-title border-bottom">
@@ -10,7 +10,7 @@
         {{item.title}}
       </div>
       <div v-if="item.children" class="item-children">
-        <List :list="item.children" />
+        <List :categoryList="item.children" />
       </div>
     </div>
   </div>
@@ -18,9 +18,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
+import { CategoryList } from '@/types'
 @Component
 export default class List extends Vue {
-  @Prop() list!: Array<object>
+  @Prop() categoryList!: CategoryList
 }
 </script>
 

@@ -30,10 +30,10 @@ export default class Header extends Vue {
   private opcityStyle: Object = {
     opacity: 0
   }
-  activated () {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll)
   }
-  deactivated () {
+  destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
   }
   handleScroll () {

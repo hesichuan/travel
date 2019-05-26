@@ -47,3 +47,17 @@ export interface HotCities {
   spell: string
   name: string
 }
+/** Detail 模块 */
+export interface SightName {
+  sightName: string
+}
+export interface BannerImg {
+  bannerImg: string
+}
+export interface GallaryImgs {
+  gallaryImgs: Array<string>
+}
+export interface CategoryList {
+  title: string
+  children?: Array<CategoryList>
+}

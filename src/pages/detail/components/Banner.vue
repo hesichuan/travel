@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img class="banner-img" src="https://img1.qunarzz.com/travel/d8/1704/3d/edfa46d0ad0e39b5.jpg_r_640x426x70_e97a057f.jpg" alt="">
+      <img v-if="bannerImg" class="banner-img" :src="require(`@/assets/image/${bannerImg}`)">
       <div class="banner-info">
-        <div class="banner-title">中国古代宫廷建筑之精华</div>
+        <div class="banner-title">{{sightName}}</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe692;</span>
-          39
+          {{gallaryImgs.length}}
         </div>
       </div>
     </div>
     <CommonGallary
-      :imgs="imgs"
+      :gallaryImgs="gallaryImgs"
       v-show="showGallary"
       @close="handleGallaryClose"
     />
@@ -19,8 +19,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 import CommonGallary from 'common/gallary/Gallary.vue'
+import { SightName, BannerImg, GallaryImgs } from '@/types'
 
 @Component({
   components: {
@@ -28,10 +29,9 @@ import CommonGallary from 'common/gallary/Gallary.vue'
   }
 })
 export default class Banner extends Vue {
-  private imgs: Array<string> = [
-    'https://img1.qunarzz.com/travel/d3/1509/97/ff002d96a2f511.jpg_600x600x70_f6312004.jpg',
-    'https://img1.qunarzz.com/travel/d1/1509/8c/706459896e55c.jpg_600x600x70_a5be441a.jpg'
-  ]
+  @Prop() sightName!: SightName
+  @Prop() bannerImg!: BannerImg
+  @Prop() gallaryImgs!: Array<GallaryImgs>
   private showGallary: Boolean = false
 
   handleBannerClick () {

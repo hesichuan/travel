@@ -1,12 +1,12 @@
 <template>
   <div class="container" @click="handleGallaryClick">
     <div class="wrapper">
-      <swiper :options="swiperOption">
+      <swiper :options="swiperOption" v-if="showSwiper">
         <swiper-slide
-          v-for="(item, index) in imgs"
+          v-for="(item, index) in gallaryImgs"
           :key="index"
         >
-          <img class="gallary-img" :src="item">
+          <img class="gallary-img" :src="require(`@/assets/image/${item}`)">
         </swiper-slide>
         <div class="swiper-pagination"  slot="pagination"></div>
       </swiper>
@@ -15,12 +15,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Emit } from 'vue-property-decorator'
-import { SwiperList, SwiperOption } from '@/types'
+import { Component, Vue, Prop, Emit, Inject } from 'vue-property-decorator'
+import { SwiperList, SwiperOption, GallaryImgs } from '@/types'
 @Component
 export default class Gallary extends Vue {
   @Prop() swiperList!: Array<SwiperList>
-  @Prop() imgs!: Array<string>
+  @Prop() gallaryImgs!: Array<GallaryImgs>
   private swiperOption: SwiperOption = {
     loop: true,
     pagination: {
@@ -32,6 +32,10 @@ export default class Gallary extends Vue {
   }
   @Emit('close')
   handleGallaryClick () {}
+  // v-if判断swiper是否已经渲染，可解决loop不生效的bug
+  get showSwiper () {
+    return this.gallaryImgs.length
+  }
 }
 </script>
 
