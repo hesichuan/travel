@@ -15,7 +15,7 @@ export default class Header extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-@import '~styles/varibles.styl'
+  @import '~styles/varibles.styl'
   .header
     position relative
     overflow hidden
