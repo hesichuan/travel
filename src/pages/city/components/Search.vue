@@ -32,14 +32,7 @@
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import Bscroll from 'better-scroll'
 import { Action } from 'vuex-class'
-
-interface Cities {
-  [key: string]: {
-    id: number
-    spell: string
-    name: string
-  }
-}
+import { Cities } from '@/types'
 
 @Component
 export default class Search extends Vue {

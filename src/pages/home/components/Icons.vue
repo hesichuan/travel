@@ -16,13 +16,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
+import { IconList } from '@/types'
 
-interface IconList {
-  id: number | string
-  filename: string
-  desc: string
-  alt?: string
-}
 @Component
 export default class Icons extends Vue {
   @Prop() iconList!: Array<IconList>

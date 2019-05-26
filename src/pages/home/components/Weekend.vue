@@ -17,13 +17,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { WeekendList } from '@/types'
 
-interface WeekendList {
-	id: number | string
-	filename: string
-	title: string
-	desc: string
-}
 @Component
 export default class Weekend extends Vue {
 	@Prop() weekendList!: Array<WeekendList>

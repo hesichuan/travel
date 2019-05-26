@@ -17,14 +17,7 @@
 
 <script lang="ts">
 import { Component, Prop, Emit, Vue } from 'vue-property-decorator'
-
-interface Cities {
-  [key: string]: {
-    id: number
-    spell: string
-    name: string
-  }
-}
+import { Cities } from '@/types'
 
 @Component
 export default class Alphabet extends Vue {

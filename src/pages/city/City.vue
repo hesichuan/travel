@@ -22,20 +22,9 @@ import CityHeader from './components/Header.vue'
 import CitySearch from './components/Search.vue'
 import CityList from './components/List.vue'
 import CityAlphabet from './components/Alphabet.vue'
+import { Cities, HotCities } from '@/types'
 import axios from 'axios'
 
-interface Cities {
-  [key: string]: {
-    id: number
-    spell: string
-    name: string
-  }
-}
-interface HotCities {
-  id: number
-  spell: string
-  name: string
-}
 @Component({
   components: {
     CityHeader,
