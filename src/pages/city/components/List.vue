@@ -44,25 +44,14 @@
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import { State, Action } from 'vuex-class'
+import { Cities, HotCities } from '@/types'
 import Bscroll from 'better-scroll'
 
-interface Cities {
-  [key: string]: {
-    id: number
-    spell: string
-    name: string
-  }
-}
-interface HotCities {
-  id: number
-  spell: string
-  name: string
-}
 @Component
 export default class List extends Vue {
   private scroll: any
-  @State city!: string
-  @Action changeCity!: Function
+  @State('city') city!: string
+  @Action('changeCity') changeCity!: Function
   @Prop() cities!: Array<Cities>
   @Prop() hotCities!: Array<HotCities>
   @Prop() letter: string = ''

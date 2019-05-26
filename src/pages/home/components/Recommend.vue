@@ -18,13 +18,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { RecommendList } from '@/types'
 
-interface RecommendList {
-	id: number | string
-	filename: string
-	title: string
-	desc: string
-}
 @Component
 export default class Recommend extends Vue {
   @Prop() recommendList!: Array<RecommendList>

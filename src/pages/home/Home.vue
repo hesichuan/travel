@@ -15,31 +15,10 @@ import HomeSwiper from './components/SwiperPic.vue'
 import HomeIcons from './components/Icons.vue'
 import HomeRecommend from './components/Recommend.vue'
 import HomeWeekend from './components/Weekend.vue'
+import { State } from 'vuex-class'
+import { SwiperList, IconList, RecommendList, WeekendList } from '@/types'
 import axios from 'axios'
 
-interface SwiperList {
-  id: number | string
-  filename: string
-  alt?: string
-}
-interface IconList {
-  id: number | string
-  filename: string
-  desc: string
-  alt?: string
-}
-interface RecommendList {
-	id: number | string
-	filename: string
-	title: string
-	desc: string
-}
-interface WeekendList {
-	id: number | string
-	filename: string
-	title: string
-	desc: string
-}
 @Component({
   components: {
     HomeHeader,
@@ -54,13 +33,23 @@ export default class Home extends Vue {
   private iconList: Array<IconList> = []
   private recommendList: Array<RecommendList> = []
   private weekendList: Array<WeekendList> = []
+  private lastCity: String = ''
+  @State('city') city!:String
 
   mounted () {
+    this.lastCity = this.city
     this.getHomeInfo()
   }
 
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
+  }
+
   async getHomeInfo () {
-    let data = await axios.get('/api/index.json')
+    let data = await axios.get(`/api/index.json?city=${this.city}`)
       .then(await this.getHomeInfoSucc)
     if (data) {
       this.swiperList = data.swiperList

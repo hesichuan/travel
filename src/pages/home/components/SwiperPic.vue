@@ -11,19 +11,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { SwiperList, Pagination, SwiperOption } from '@/types'
 
-interface SwiperList {
-  id: number | string
-  filename: string
-  alt?: string
-}
-interface Pagination {
-  el: string
-}
-interface SwiperOption {
-  pagination: Pagination
-  loop: boolean
-}
 @Component
 export default class SwiperPic extends Vue {
   @Prop() swiperList!: Array<SwiperList>
