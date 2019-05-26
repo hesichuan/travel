@@ -10,22 +10,26 @@
         </div>
       </div>
     </div>
-    <CommonGallary
-      :gallaryImgs="gallaryImgs"
-      v-show="showGallary"
-      @close="handleGallaryClose"
-    />
+    <FadeAnimation>
+      <CommonGallary
+        :gallaryImgs="gallaryImgs"
+        v-show="showGallary"
+        @close="handleGallaryClose"
+      />
+    </FadeAnimation>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import CommonGallary from 'common/gallary/Gallary.vue'
+import FadeAnimation from 'common/fade/FadeAnimation.vue'
 import { SightName, BannerImg, GallaryImgs } from '@/types'
 
 @Component({
   components: {
-    CommonGallary
+    CommonGallary,
+    FadeAnimation
   }
 })
 export default class Banner extends Vue {
