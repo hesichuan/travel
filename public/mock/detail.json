@@ -1,0 +1,40 @@
+{
+  "status": true,
+  "data": {
+    "sightName": "中国古代宫廷建筑之精华",
+    "bannerImg": "gallary_banner.jpg",
+    "gallaryImgs": [
+      "gallary_001.jpg",
+      "gallary_002.jpg",
+      "gallary_003.jpg",
+      "gallary_004.jpg",
+      "gallary_005.jpg",
+      "gallary_006.jpg",
+      "gallary_007.jpg",
+      "gallary_008.jpg",
+      "gallary_009.jpg",
+      "gallary_010.jpg",
+      "gallary_011.jpg",
+      "gallary_012.jpg",
+      "gallary_013.jpg",
+      "gallary_014.jpg"
+    ],
+    "categoryList": [
+      {
+        "title": "成人票",
+        "children": [
+          {
+            "title": "成人三馆联票",
+            "children": [
+              { "title": "成人三馆联票 - 长安街连锁店销售" }
+            ]
+          },
+          { "title": "成人五馆联票" }
+        ]
+      },
+      { "title": "学生票" },
+      { "title": "儿童票" },
+      { "title": "特惠票" }
+    ]
+  }
+}
