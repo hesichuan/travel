@@ -33,6 +33,9 @@ export default class Header extends Vue {
   activated () {
     window.addEventListener('scroll', this.handleScroll)
   }
+  deactivated () {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
   handleScroll () {
     const top: number = document.documentElement.scrollTop
     if (top > 60) {
