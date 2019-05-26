@@ -9,7 +9,7 @@ Vue.use(Vuex)
 const store: Store<any> = new Vuex.Store({
   actions,
   mutations,
-  state,
+  state
 })
 
 export default store
