@@ -5,14 +5,18 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="botton-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{city}}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="botton-list">
-          <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+          <div class="button-wrapper"
+            v-for="item of hotCities"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{item.name}}</div>
           </div>
         </div>
@@ -24,7 +28,11 @@
       >
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
-          <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
+          <div class="item border-bottom"
+            v-for="innerItem of item"
+            :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
+          >
             {{innerItem.name}}
           </div>
         </div>
@@ -35,6 +43,7 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
+import { State, Action } from 'vuex-class'
 import Bscroll from 'better-scroll'
 
 interface Cities {
@@ -51,10 +60,12 @@ interface HotCities {
 }
 @Component
 export default class List extends Vue {
+  private scroll: any
+  @State city!: string
+  @Action changeCity!: Function
   @Prop() cities!: Array<Cities>
   @Prop() hotCities!: Array<HotCities>
   @Prop() letter: string = ''
-  private scroll: any
   @Watch('letter', { deep: true })
   onChangeLetter (val: string) {
     if (this.letter) {
@@ -62,9 +73,14 @@ export default class List extends Vue {
       this.scroll.scrollToElement(element)
     }
   }
-
+  handleCityClick (city: string) {
+    this.changeCity(city)
+    this.$router.push('/')
+  }
   mounted () {
-    this.scroll = new Bscroll('.list')
+    this.scroll = new Bscroll('.list', {
+      click: true
+    })
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :swiperList="swiperList"></home-swiper>
     <home-icons :iconList="iconList"></home-icons>
     <home-recommend :recommendList="recommendList"></home-recommend>
@@ -50,7 +50,6 @@ interface WeekendList {
   }
 })
 export default class Home extends Vue {
-  private city: string = ''
   private swiperList: Array<SwiperList> = []
   private iconList: Array<IconList> = []
   private recommendList: Array<RecommendList> = []
@@ -64,7 +63,6 @@ export default class Home extends Vue {
     let data = await axios.get('/api/index.json')
       .then(await this.getHomeInfoSucc)
     if (data) {
-      this.city = data.city
       this.swiperList = data.swiperList
       this.iconList = data.iconList
       this.recommendList = data.recommendList

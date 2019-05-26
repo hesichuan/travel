@@ -11,7 +11,7 @@ import 'swiper/dist/css/swiper.css'
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
 
-new Vue({
+const app = new Vue({
   router,
   store,
   render: h => h(App)
