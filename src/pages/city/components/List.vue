@@ -28,7 +28,11 @@
       >
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
-          <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
+          <div class="item border-bottom"
+            v-for="innerItem of item"
+            :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
+          >
             {{innerItem.name}}
           </div>
         </div>
@@ -56,12 +60,12 @@ interface HotCities {
 }
 @Component
 export default class List extends Vue {
+  private scroll: any
   @State city!: string
   @Action changeCity!: Function
   @Prop() cities!: Array<Cities>
   @Prop() hotCities!: Array<HotCities>
   @Prop() letter: string = ''
-  private scroll: any
   @Watch('letter', { deep: true })
   onChangeLetter (val: string) {
     if (this.letter) {
@@ -70,11 +74,13 @@ export default class List extends Vue {
     }
   }
   handleCityClick (city: string) {
-    console.error(city)
     this.changeCity(city)
+    this.$router.push('/')
   }
   mounted () {
-    this.scroll = new Bscroll('.list')
+    this.scroll = new Bscroll('.list', {
+      click: true
+    })
   }
 }
 </script>

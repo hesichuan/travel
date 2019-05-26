@@ -18,6 +18,7 @@
           class="search-item border-bottom"
           v-for="item of list"
           :key="item.id"
+          @click="handleCityClick(item.name)"
         >
           {{item.name}}
         </li>
@@ -30,6 +31,7 @@
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator'
 import Bscroll from 'better-scroll'
+import { Action } from 'vuex-class'
 
 interface Cities {
   [key: string]: {
@@ -46,9 +48,16 @@ export default class Search extends Vue {
   private timer: any = null
   private scroll: any = null
   @Prop() cities!: Cities
+  @Action changeCity!: Function
 
+  handleCityClick (city: string) {
+    this.changeCity(city)
+    this.$router.push('/')
+  }
   mounted () {
-    this.scroll = new Bscroll(this.$refs.search)
+    this.scroll = new Bscroll(this.$refs.search, {
+      click: true
+    })
   }
   @Watch('keyword', { deep: true })
   onChangeKeyword () {
