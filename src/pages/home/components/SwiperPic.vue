@@ -4,14 +4,14 @@
       <swiper-slide v-for="item in swiperList" :key="item.id">
         <img class="swiper-img" :src="require(`@/assets/image/${item.filename}`)" :alt="item.alt">
       </swiper-slide>
-      <div class="swiper-pagination"  slot="pagination"></div>
+      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { SwiperList, Pagination, SwiperOption } from '@/types'
+import { SwiperList, SwiperOption } from '@/types'
 
 @Component
 export default class SwiperPic extends Vue {

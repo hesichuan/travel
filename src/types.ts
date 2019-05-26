@@ -1,10 +1,13 @@
 /** vue-awesome-swiper plugins */
-export interface Pagination {
+interface Pagination {
   el: string
+  type?: string
 }
 export interface SwiperOption {
   pagination: Pagination
   loop: boolean
+  observer?: boolean
+  observeParents?: boolean
 }
 
 /** Home 模块 */
