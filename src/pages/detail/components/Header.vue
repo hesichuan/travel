@@ -37,7 +37,7 @@ export default class Header extends Vue {
     window.removeEventListener('scroll', this.handleScroll)
   }
   handleScroll () {
-    const top: number = document.documentElement.scrollTop
+    const top: number = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
     if (top > 60) {
       let opacity = top / 140
       opacity = opacity > 1 ? 1 : opacity
